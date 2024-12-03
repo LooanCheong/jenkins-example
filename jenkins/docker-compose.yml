@@ -1,0 +1,14 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:jdk17
+    container_name: jenkins
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    user: root  # Jenkins 컨테이너가 루트 권한을 갖도록 설정
+    ports:
+      - "8777:8080"
+      - "50000:50000"
+    volumes:
+      - C:/Users/Admin/Desktop/jenkins_hellocat:/var/jenkins_home  # Jenkins 데이터 영구 저장소
